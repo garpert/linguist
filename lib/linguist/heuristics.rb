@@ -354,7 +354,7 @@ module Linguist
     disambiguate ".r" do |data|
       if /\bRebol\b/i.match(data)
         Language["Rebol"]
-      elsif data.include?("<-")
+      elsif /<-|^\s*#/.match(data)
         Language["R"]
       end
     end
@@ -430,7 +430,7 @@ module Linguist
     end
 
     disambiguate ".ts" do |data|
-      if data.include?("</TS>")
+      if data.include?("<TS")
         Language["XML"]
       else
         Language["TypeScript"]
